@@ -1,5 +1,9 @@
-from telebot.types import ReplyKeyboardMarkup , KeyboardButton
+from pyrogram.types import ReplyKeyboardMarkup
 
-main_keyboard = ReplyKeyboardMarkup(resize_keyboard=True,row_width=1)
-
-main_keyboard.add(KeyboardButton("محاسبه🔰 BMI من"))
+main_keyboard = ReplyKeyboardMarkup(
+    [
+        ["محاسبه BMI من"]
+    ],
+    one_time_keyboard=True,
+    resize_keyboard=True,
+)

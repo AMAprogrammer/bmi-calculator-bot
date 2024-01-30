@@ -1,4 +1,4 @@
-from telebot import TeleBot
+from pyrogram import Client
 from local_botconfig import token
 
-bot = TeleBot(token=token)
+bot = Client(name="BMI_cal",bot_token=token)
