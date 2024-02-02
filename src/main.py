@@ -65,4 +65,13 @@ async def calculate_bmi(client, message:Message):
                 height = user["height"]
                 weight = user["weight"]
                 result = calculator(height=height, weight=weight)
-                await bot.send_message(chat_id=user_id, text=f"BMI شما:\n\n{result}\n\nبرای بازگشت به منوی اصلی /start را بزنید")                
+                await bot.send_message(chat_id=user_id, text=f"BMI شما:\n\n{result}\n\nبرای بازگشت به منوی اصلی /start را بزنید")     
+                
+                
+                
+                
+                
+                
+                
+                
+                bot.run()           
