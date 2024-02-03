@@ -15,24 +15,22 @@ async def main_menu(client, message:Message):
     user = users.find_one({"_id":user_id})
     if user:
         user_step = user["step"]
-    
-    if text == "/start":
-            
-        if not (user):
-            users.insert_one({"_id":user_id,"step":"home","bmi":None,"height":None,"weight":None})
-            user_step = "home"
+    else:
+        users.insert_one({"_id":user_id,"step":"home","bmi":None,"height":None,"weight":None})
         
-        if user_step == "home":
+    if user_step == "home":
+        if text == "/start":
+
             bot.send_message(chat_id=user_id,
                             text="سلام به ربات محاسبه شاخص توده بدنی خوش آمدید",
                             reply_markup=main_keyboard)
 
 
-    elif text == "محاسبه BMI من":
-        if user_step == "home":
-            
-            await bot.send_message(chat_id=user_id, text="قد خود را وارد کنید:")
-            users.update_one({"_id":user_id},{"$set":{"step":"get_height"}})
+        elif text == "محاسبه BMI من":
+            if user_step == "home":
+
+                await bot.send_message(chat_id=user_id, text="قد خود را وارد کنید:")
+                users.update_one({"_id":user_id},{"$set":{"step":"get_height"}})
             
     elif user_step == "get_height":
         
@@ -44,6 +42,7 @@ async def main_menu(client, message:Message):
             users.update_one({"_id":user_id},{"$set":{"height":height}})
             users.update_one({"_id":user_id},{"$set":{"step":"get_weight"}})
             await bot.send_message(chat_id=user_id, text="وزن خود را وارد کنید:")
+            
     elif user_step == "get_weight":
         
         try:
